@@ -39,6 +39,7 @@ public class GestionnaireBancaire {
 
     public void ajouterTransaction(Transaction t) {
         this.transactions.add(t);
+        calculSolde();
     }
 
 
