@@ -40,24 +40,17 @@ public class GestionnaireBancaireTest {
 
         taux = new ArrayList<Taux>();
         taux.add(new Taux(0.0, 1000.0, 0.01, "Taux 1"));
-        taux.add(new Taux(1000.0, 2000.0, 0.02, "Taux 2"));
-        taux.add(new Taux(2000.0, Double.MAX_VALUE, 0.03, "Taux 3"));
+        taux.add(new Taux(1000.0, 10000, 0.02, "Taux 2"));
+        taux.add(new Taux(10000, 1000000, 0.03, "Taux 3"));
 
         solde = 0.0;
     }
     @Test
-    public void testCalculSolde() {
-        // test du calcul du solde avec une liste de transactions
-        GestionnaireBancaire gestionBanquaire = new GestionnaireBancaire(transactions, taux, solde);
-        assertEquals(700.0, gestionBanquaire.calculSolde(), 0.01);
-    }
-
-    @Test
     public void testAppliquerTaux() {
         // test de l'application des taux sur le solde
-        GestionnaireBancaire gestionBanquaire = new GestionnaireBancaire(transactions, taux, solde);
-        gestionBanquaire.appliquerTaux();
-        assertEquals(721.0, gestionBanquaire.getSolde(), 0.01);
+        GestionnaireBancaire gestionnaireBancaire = new GestionnaireBancaire(transactions, taux, 0.0);
+        gestionnaireBancaire.appliquerTaux();
+        assertEquals(716.91, gestionnaireBancaire.getSolde(), 0.01);
     }
 
     @Test

@@ -3,6 +3,9 @@ package com.example.gestionnairebanque;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,6 +140,67 @@ public class GestionnaireBancaire {
         reader.close();
     }
 
+    public Double getCoefficient(Transaction t) {
+        Double result = 0.0;
+        for (int i = 0; i < this.taux.size(); i++) {
+            if (t.getMontant() > this.taux.get(i).getSeuilInf()) {
+                result = this.taux.get(i).getTaux();
+            }
+        }
+        System.out.println("result is : \n"+result);
+        return result;
+    }
+
+    public Double calculSolde() {
+        double total = 0.0;
+        loadReferences();
+        for (Transaction transaction : this.transactions) {
+            System.out.println("transaction is "+transaction.toString());
+            /*for (int i = 0; i <this.taux.size();i++){
+                System.out.println("taux is "+this.taux.get(i).toString());
+            }*/
+
+            if (transaction.getC() == 'C') {
+                double resultcoed = transaction.getMontant() * getCoefficient(transaction);
+                System.out.println("resultcoed is "+resultcoed);
+                total +=transaction.getMontant();
+
+            }else{
+                total -= transaction.getMontant() ;
+            }
+
+            System.out.println("total is  \n"+total);
+        }
+        return total;
+    }
+
+    public void CreateteRef(String Ligne) {
+        String[] values = Ligne.split(" ");
+        //System.out.println("ligne is "+values.toString());
+        Taux taux = new Taux(Double.parseDouble(values[1]), Double.parseDouble(values[2]),
+                Double.parseDouble(values[3]), values[0]);
+        System.out.println("taux is " + taux.toString());
+        this.taux.add(taux);
+
+    }
+
+    private void loadReferences() {
+        try {
+            Path P1 = Paths.get("src\\main\\resources\\data\\taux.txt");
+            List<String> lignes = Files.readAllLines(P1);
+// Parcours et affichage
+            for (String string : lignes) {
+                System.out.println("Ligne is : " + string);
+                CreateteRef(string);
+            }
+
+
+        } catch (Exception i) {
+            System.out.println("Critere file not found");
+        }
+
+
+    }
 
 
     public ArrayList<Transaction> getTransactions() {
