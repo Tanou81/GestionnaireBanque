@@ -5,4 +5,10 @@ public class TauxTest {
     public void test() {
         System.out.println();
     }
+
+    @Test
+    public vois testTaux() {
+        Taux taux = new Taux();
+        assertEquals(1, 1);
+    }
 }
