@@ -19,33 +19,40 @@ public class Controleur {
 
     @FXML
     private TextField tfMontant;
-
+    @FXML
+    private Label tSolde;
     @FXML
     private ListView<Label> lvListeEtudiant;
 
     private ObservableList<Label> observableList;
 
+    private GestionnaireBancaire gestionnaireBancaire;
     /***
      * Méthode appelée automatiquement par JavaFX lors de l'initialisation de la fenêtre.
      */
     public void initialize() {
-        GestionnaireBancaire GestionnaireBancaire = new GestionnaireBancaire(); // Créer un objet GestionnaireEtudiant qui charge le fichier de critères.
+         gestionnaireBancaire = com.example.gestionnairebanque.GestionnaireBancaire.getInstance(); // Créer un objet GestionnaireBancaire qui charge le fichier de critères.
 
         observableList = FXCollections.observableArrayList(); // Créer une observableList<Label> liée à la ListView dans la méthode initialize()
         lvListeEtudiant.setItems(observableList); // Lier la ListView à l'observableList
 
-
+        tSolde.setText(String.valueOf(gestionnaireBancaire.getSolde()));
     }
-/**
+
+    /**
      * Méthode appelée lors de l'appui sur le bouton "Enregistrer" de la fenêtre.
+     * elle ajoute une transaction à la liste des transactions.
+     * elle ajoute une ligne à la ListView.
+     * elle efface les champs de saisie.
+     * elle met à jour le solde.
      * @param event
      */
     @FXML
     public void actionEnregistrer(ActionEvent event) {
         System.out.println("Enregistrer");
         String nom = tfNom.getText();
-        System.out.println("Montant is "+tfMontant.getText());
-        Double montant =0.0;
+        System.out.println("Montant is " + tfMontant.getText());
+        Double montant = 0.0;
         try {
             montant = Double.parseDouble(tfMontant.getText());
         } catch (NumberFormatException e) {
@@ -58,44 +65,16 @@ public class Controleur {
             c = 'C';
         }
         Transaction transaction = new Transaction(nom, c, montant);
-        System.out.println("SO is "+transaction.toString());
+        System.out.println("SO is " + transaction.toString());
+        gestionnaireBancaire.ajouterTransaction(transaction);
         tfNom.clear();
         tfMontant.clear();
         comboBox.getSelectionModel().clearSelection();
-
         Label label = new Label(transaction.toString());
 
+        tSolde.setText(gestionnaireBancaire.getSoldeString());
         observableList.add(label);
     }
 
-/*
-    @FXML
-    void actionEnregistrer(ActionEvent event) {
-        System.out.println("Enregistrer");
-        String nom = tfNom.getText();
-        String prenom = tfPrenom.getText();
-        String moyenneStr = tfMoyenne.getText();
-
-        System.out.println("Nom: " + nom + " Prenom: " + prenom + " Moyenne: " + moyenneStr);
-        double moyenne = Double.parseDouble(tfMoyenne.getText());
-
-        // Créer un objet Etudiant
-        Etudiant etudiant = new Etudiant(nom, prenom, moyenne);
-
-        // Ajouter l'étudiant à la promotion dans l'objet GestionnaireEtudiant
-        gestionnaireEtudiant.ajouterEtudiant(etudiant);
-
-        // Sauvegarder la promotion dans un fichier
-
-        // Ajouter un Label dans la ListView
-        Label label = new Label(etudiant.toString());
-        label.setTextFill(gestionnaireEtudiant.choisirRgb(etudiant)); // Colorer le label selon le critère applicable à l'étudiant enregistré
-        observableList.add(label);
-    }
-    public void afficherListeTransactions() {
-        lvListeEtudiant.setItems(FXCollections.observableArrayList(
-               // GestionnaireBancaire.getInstance().getTransactions().toString()));
-    }
-   */
 
 }

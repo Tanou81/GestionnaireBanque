@@ -36,9 +36,12 @@
         <TextField fx:id="tfMontant" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <TextField fx:id="tCombo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button onAction="#actionEnregistrer" text="Enregistrer" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-        <ListView fx:id="lvListeEtudiant" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="3">
+        <ListView fx:id="lvListeEtudiant" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="3">
 
         </ListView>
-      <TextField fx:id="tfNom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Solde : " GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.columnSpan="2" />
+        <Label fx:id="tSolde" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.columnSpan="2" />
+
+        <TextField fx:id="tfNom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     </children>
 </GridPane>

@@ -15,16 +15,17 @@ public class Taux {
 
     private double taux;
 
-private String descriptionTaux;
+    private String descriptionTaux;
 
     /**
      * Constructeur avec parametre de taux
+     *
      * @param seuilInf
      * @param seuilSup
      * @param taux
      * @param descriptionTaux
      */
-  public Taux(double seuilInf, double seuilSup, double taux, String descriptionTaux) {
+    public Taux(double seuilInf, double seuilSup, double taux, String descriptionTaux) {
         this.seuilInf = seuilInf;
         this.seuilSup = seuilSup;
         this.taux = taux;
@@ -33,15 +34,17 @@ private String descriptionTaux;
 
     /**
      * methode pour retourner le seuilInf
+     *
      * @return
      */
     public double getSeuilInf() {
-      //System.out.println("getSeuilInf is : "+ this.seuilInf);
-        return  this.seuilInf;
+        //System.out.println("getSeuilInf is : "+ this.seuilInf);
+        return this.seuilInf;
     }
 
     /**
      * methode pour modifier le seuilInf
+     *
      * @param seuilInf
      */
     public void setSeuilInf(double seuilInf) {
@@ -50,6 +53,7 @@ private String descriptionTaux;
 
     /**
      * methode pour retourner le seuilSup
+     *
      * @return
      */
     public double getSeuilSup() {
@@ -58,6 +62,7 @@ private String descriptionTaux;
 
     /**
      * methode pour modifier le seuilSup
+     *
      * @param seuilSup
      */
     public void setSeuilSup(double seuilSup) {
@@ -66,7 +71,8 @@ private String descriptionTaux;
 
     /**
      * methode pour retourner le taux
-     * @param taux
+     *
+     * @return  taux
      */
     public double getTaux() {
         return taux;
@@ -74,8 +80,8 @@ private String descriptionTaux;
 
     /**
      * methode pour modifier le taux
-    @param taux
-
+     *
+     * @param taux
      */
     public void setTaux(double taux) {
         this.taux = taux;
@@ -83,6 +89,7 @@ private String descriptionTaux;
 
     /**
      * methode pour retourner la description du taux
+     *
      * @return String
      */
     public String getDescriptionTaux() {
@@ -91,6 +98,7 @@ private String descriptionTaux;
 
     /**
      * methode pour modifier la description du taux
+     *
      * @param descriptionTaux
      */
     public void setDescriptionTaux(String descriptionTaux) {
@@ -100,15 +108,16 @@ private String descriptionTaux;
     /**
      * methode pour retourner le seuilInf, le seuilSup, le taux et la description du taux
      * refitinition de la methode toString
+     *
      * @return
      */
     @Override
-    public String toString(){
+    public String toString() {
         String result = "";
-        result += " seuilInf: " + seuilInf ;
-        result += " seuilSup: " + seuilSup ;
-        result += " taux: " + taux ;
-        result += " descriptionTaux: " + descriptionTaux ;
+        result += " seuilInf: " + seuilInf;
+        result += " seuilSup: " + seuilSup;
+        result += " taux: " + taux;
+        result += " descriptionTaux: " + descriptionTaux;
         return result;
     }
 }

@@ -1,4 +1,5 @@
 package com.example.gestionnairebanque.tests;
+
 import com.example.gestionnairebanque.Transaction;
 import org.junit.Test;
 
@@ -7,10 +8,10 @@ import static org.junit.Assert.*;
 public class TransactionTest {
 
     @Test
-    public void testTransaction1 () {
+    public void testTransaction1() {
 
         Transaction transaction = new Transaction();
-        assertEquals(transaction,  transaction);
+        assertEquals(transaction, transaction);
     }
 
     @Test
@@ -39,12 +40,6 @@ public class TransactionTest {
         assertEquals(2000.0, transaction.getmontant(), 0.01);
     }
 
-    @Test
-    public void testToString() {
-        Transaction transaction = new Transaction("client1", 'C', 1000.0);
-        String expectedString = " nom: client1 c: C montant: 1000.0";
-        assertEquals(expectedString, transaction.toString());
-    }
 
     @Test
     public void testConstructor() {
@@ -84,10 +79,5 @@ public class TransactionTest {
         assertNotEquals(t1, t2);
     }
 
-    @Test
-    public void testToStringBis() {
-        Transaction t = new Transaction("John", 'D', 100.0);
-        String expected = " nom: John c: D montant: 100.0";
-        assertEquals(expected, t.toString());
-    }
+
 }

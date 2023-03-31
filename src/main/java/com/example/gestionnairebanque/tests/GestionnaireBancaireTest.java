@@ -15,10 +15,10 @@ public class GestionnaireBancaireTest {
     private ArrayList<Transaction> transactions;
     private ArrayList<Taux> taux;
     private double solde;
-    @Test
-    public void testTransaction () {
 
-        GestionnaireBancaire gestio = new GestionnaireBancaire();
+    @Test
+    public void testTransaction() {
+GestionnaireBancaire gestio = new GestionnaireBancaire();
         assertEquals(1, 1);
     }
 
@@ -45,6 +45,7 @@ public class GestionnaireBancaireTest {
 
         solde = 0.0;
     }
+
     @Test
     public void testAppliquerTaux() {
         // test de l'application des taux sur le solde

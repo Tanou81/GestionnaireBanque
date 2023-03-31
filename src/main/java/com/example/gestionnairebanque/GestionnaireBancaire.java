@@ -21,25 +21,30 @@ public class GestionnaireBancaire {
 
     /**
      * Constructeur par défaut
-     *
      */
     public GestionnaireBancaire() {
         this.transactions = new ArrayList<Transaction>();
         this.taux = new ArrayList<Taux>();
         this.solde = 0.0;
     }
-/**
- * Constructeur si parametre
- * */
+
+    /**
+     * Constructeur si parametre
+     */
     public GestionnaireBancaire(ArrayList<Transaction> transactions, ArrayList<Taux> taux, double solde) {
         this.transactions = transactions;
         this.taux = taux;
         this.solde = solde;
     }
 
+    public void ajouterTransaction(Transaction t) {
+        this.transactions.add(t);
+    }
+
 
     /**
      * methode qui permet de calculer le coefficient trouver dans le fichier taux
+     *
      * @param t
      * @return result
      */
@@ -51,13 +56,14 @@ public class GestionnaireBancaire {
                 result = this.taux.get(i).getTaux();
             }
         }
-        System.out.println("result is : \n"+result);
+        System.out.println("result is : \n" + result);
         return result;
     }
 
 
     /**
      * methode qui permet de calculer le solde
+     *
      * @return double
      */
     public Double calculSolde() {
@@ -66,19 +72,19 @@ public class GestionnaireBancaire {
         for (Transaction transaction : this.transactions) {
 
 
-            System.out.println("transaction.getMontant() is "+transaction.toString());
+            System.out.println("transaction.getMontant() is " + transaction.toString());
             if (transaction.getC() == 'C') {
 
                 double resultcoed = transaction.getMontant() * getCoefficient(transaction);
-                System.out.println("        resultcoed is "+resultcoed);
-                total +=transaction.getMontant() - resultcoed;
+                System.out.println("        resultcoed is " + resultcoed);
+                total += transaction.getMontant() - resultcoed;
 
-            }else{
+            } else {
 
-                total -= transaction.getMontant() ;
+                total -= transaction.getMontant();
             }
 
-            System.out.println("        total is  \n"+total);
+            System.out.println("        total is  \n" + total);
         }
         return total;
     }
@@ -86,6 +92,7 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui de creer un objet Taux
+     *
      * @param Ligne
      */
     public void CreateteRef(String Ligne) {
@@ -122,6 +129,7 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui retourne la liste des transactions
+     *
      * @return
      */
     public ArrayList<Transaction> getTransactions() {
@@ -130,6 +138,7 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui permet de modifier la liste des transactions
+     *
      * @param transactions
      */
     public void setTransactions(ArrayList<Transaction> transactions) {
@@ -138,6 +147,7 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui retourne la liste des taux
+     *
      * @return taux ArrayList
      */
     public ArrayList<Taux> getTaux() {
@@ -147,6 +157,7 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui permet de retourner le solde
+     *
      * @return double solde du compte
      */
     public double getSolde() {
@@ -164,9 +175,28 @@ public class GestionnaireBancaire {
 
     /**
      * methode qui permet de savoir si le solde est positif
+     *
      * @return boolean
      */
     public Boolean soldePositif() {
         return this.solde > 0;
+    }
+
+    /**
+     * Singleton de la classe GestionnaireBancaire
+     */
+    public static GestionnaireBancaire instance = null;
+    public static GestionnaireBancaire getInstance() {
+        if (instance == null) {
+            instance = new GestionnaireBancaire();
+        }
+        return instance;
+    }
+    public static void setInstance(GestionnaireBancaire instance) {
+        GestionnaireBancaire.instance = instance;
+    }
+
+    public String getSoldeString() {
+        return String.format("%.2f", this.solde);
     }
 }

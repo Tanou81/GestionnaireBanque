@@ -2,6 +2,7 @@ package com.example.gestionnairebanque;
 
 import java.io.Serializable;
 import java.util.Objects;
+
 /**
  * Classe Transaction qui contient les attributs et les methodes de transaction
  */
@@ -18,6 +19,7 @@ public class Transaction implements Serializable {
 
     /**
      * Constructeur avec parametre de transaction
+     *
      * @param nom
      * @param c
      * @param montant
@@ -27,26 +29,38 @@ public class Transaction implements Serializable {
         this.c = c;
         this.montant = montant;
     }
-/**methode pour retourner le nom*/
+
+    /**
+     * methode pour retourner le nom
+     */
     public String getNom() {
         return nom;
     }
-/**methode pour modifier le nom*/
+
+    /**
+     * methode pour modifier le nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-/**methode pour retourner le montant*/
+    /**
+     * methode pour retourner le montant
+     */
     public double getmontant() {
         return montant;
     }
-    /**methode pour modifier le montant */
+
+    /**
+     * methode pour modifier le montant
+     */
     public void setmontant(double montant) {
         this.montant = montant;
     }
 
     /**
      * methode pour retourner le nom, le caractere et le montant
+     *
      * @return result
      */
     @Override
@@ -60,6 +74,7 @@ public class Transaction implements Serializable {
 
     /**
      * methode pour retourner le caractere
+     *
      * @return c
      */
     public Character getC() {
@@ -68,6 +83,7 @@ public class Transaction implements Serializable {
 
     /**
      * methode equals pour comparer les transactions
+     *
      * @param o
      * @return boolean
      */
@@ -83,8 +99,8 @@ public class Transaction implements Serializable {
 
     /**
      * methode pour creer le hashcode
-     * @return hascode
      *
+     * @return hascode
      */
     @Override
     public int hashCode() {
@@ -93,7 +109,6 @@ public class Transaction implements Serializable {
 
     /**
      * methode pour retourner  le montant
-     * @param montant
      *
      * @return montant
      */
