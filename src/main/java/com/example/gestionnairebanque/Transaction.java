@@ -37,9 +37,9 @@ public class Transaction implements Serializable {
     @Override
     public String toString() {
         String result = "";
-        result += " nom: " + nom;
-        result += " c: " + c;
-        result += " montant: " + montant;
+        result += "| nom: " + nom;
+        result += "| c: " + c;
+        result += "| montant: " + montant;
         return result;
     }
     public Character getC() {
