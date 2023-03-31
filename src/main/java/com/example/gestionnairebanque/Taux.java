@@ -21,7 +21,7 @@ private String descriptionTaux;
         this.descriptionTaux = descriptionTaux;
     }
     public double getSeuilInf() {
-      System.out.println("getSeuilInf is : "+ this.seuilInf);
+      //System.out.println("getSeuilInf is : "+ this.seuilInf);
         return  this.seuilInf;
     }
 
@@ -51,5 +51,16 @@ private String descriptionTaux;
 
     public void setDescriptionTaux(String descriptionTaux) {
         this.descriptionTaux = descriptionTaux;
+    }
+
+
+    @Override
+    public String toString(){
+        String result = "";
+        result += " seuilInf: " + seuilInf ;
+        result += " seuilSup: " + seuilSup ;
+        result += " taux: " + taux ;
+        result += " descriptionTaux: " + descriptionTaux ;
+        return result;
     }
 }

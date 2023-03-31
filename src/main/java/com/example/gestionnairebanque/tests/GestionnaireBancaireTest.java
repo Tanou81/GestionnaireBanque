@@ -50,7 +50,7 @@ public class GestionnaireBancaireTest {
         // test de l'application des taux sur le solde
         GestionnaireBancaire gestionnaireBancaire = new GestionnaireBancaire(transactions, taux, 0.0);
         gestionnaireBancaire.appliquerTaux();
-        assertEquals(716.91, gestionnaireBancaire.getSolde(), 0.01);
+        assertEquals(660.0, gestionnaireBancaire.getSolde(), 0.01);
     }
 
     @Test

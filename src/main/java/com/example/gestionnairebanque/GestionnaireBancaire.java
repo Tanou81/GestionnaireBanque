@@ -155,21 +155,23 @@ public class GestionnaireBancaire {
         double total = 0.0;
         loadReferences();
         for (Transaction transaction : this.transactions) {
-            System.out.println("transaction is "+transaction.toString());
+
             /*for (int i = 0; i <this.taux.size();i++){
                 System.out.println("taux is "+this.taux.get(i).toString());
             }*/
-
+            System.out.println("transaction.getMontant() is "+transaction.toString());
             if (transaction.getC() == 'C') {
+
                 double resultcoed = transaction.getMontant() * getCoefficient(transaction);
-                System.out.println("resultcoed is "+resultcoed);
-                total +=transaction.getMontant();
+                System.out.println("        resultcoed is "+resultcoed);
+                total +=transaction.getMontant() - resultcoed;
 
             }else{
+
                 total -= transaction.getMontant() ;
             }
 
-            System.out.println("total is  \n"+total);
+            System.out.println("        total is  \n"+total);
         }
         return total;
     }

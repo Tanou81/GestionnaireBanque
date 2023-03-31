@@ -59,4 +59,12 @@ public class Transaction implements Serializable {
     public int hashCode() {
         return Objects.hash(nom, c, montant);
     }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public Character getc() {
+        return c;
+    }
 }
