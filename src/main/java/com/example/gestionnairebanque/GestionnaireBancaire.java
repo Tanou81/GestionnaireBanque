@@ -9,6 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe qui permet de gérer les transactions bancaires
+ */
 public class GestionnaireBancaire {
 
 
@@ -16,42 +19,30 @@ public class GestionnaireBancaire {
     private ArrayList<Taux> taux;
     private double solde;
 
+    /**
+     * Constructeur par défaut
+     *
+     */
     public GestionnaireBancaire() {
         this.transactions = new ArrayList<Transaction>();
         this.taux = new ArrayList<Taux>();
         this.solde = 0.0;
     }
-
+/**
+ * Constructeur si parametre
+ * */
     public GestionnaireBancaire(ArrayList<Transaction> transactions, ArrayList<Taux> taux, double solde) {
         this.transactions = transactions;
         this.taux = taux;
         this.solde = solde;
     }
 
-    public void chargerTransactions(String cheminFichier) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(cheminFichier));
-        String line = reader.readLine();
-        while (line != null) {
-            String[] values = line.split(",");
-            Transaction transaction = new Transaction(values[0], values[1].charAt(0), Double.parseDouble(values[2]));
-            this.transactions.add(transaction);
-            line = reader.readLine();
-        }
-        reader.close();
-    }
 
-    public void chargerTaux(String cheminFichier) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(cheminFichier));
-        String line = reader.readLine();
-        while (line != null) {
-            String[] values = line.split(",");
-            Taux taux = new Taux(Double.parseDouble(values[0]), Double.parseDouble(values[1]),
-                    Double.parseDouble(values[2]), values[3]);
-            this.taux.add(taux);
-            line = reader.readLine();
-        }
-        reader.close();
-    }
+    /**
+     * methode qui permet de calculer le coefficient trouver dans le fichier taux
+     * @param t
+     * @return result
+     */
 
     public Double getCoefficient(Transaction t) {
         Double result = 0.0;
@@ -64,14 +55,17 @@ public class GestionnaireBancaire {
         return result;
     }
 
+
+    /**
+     * methode qui permet de calculer le solde
+     * @return double
+     */
     public Double calculSolde() {
         double total = 0.0;
         loadReferences();
         for (Transaction transaction : this.transactions) {
 
-            /*for (int i = 0; i <this.taux.size();i++){
-                System.out.println("taux is "+this.taux.get(i).toString());
-            }*/
+
             System.out.println("transaction.getMontant() is "+transaction.toString());
             if (transaction.getC() == 'C') {
 
@@ -89,6 +83,11 @@ public class GestionnaireBancaire {
         return total;
     }
 
+
+    /**
+     * methode qui de creer un objet Taux
+     * @param Ligne
+     */
     public void CreateteRef(String Ligne) {
         String[] values = Ligne.split(" ");
         //System.out.println("ligne is "+values.toString());
@@ -99,6 +98,10 @@ public class GestionnaireBancaire {
 
     }
 
+    /**
+     * methode qui permet de lire le fichier taux.txt
+     * appel la methode CreateteRef
+     */
     private void loadReferences() {
         try {
             Path P1 = Paths.get("src\\main\\resources\\data\\taux.txt");
@@ -117,35 +120,52 @@ public class GestionnaireBancaire {
 
     }
 
-
+    /**
+     * methode qui retourne la liste des transactions
+     * @return
+     */
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
 
+    /**
+     * methode qui permet de modifier la liste des transactions
+     * @param transactions
+     */
     public void setTransactions(ArrayList<Transaction> transactions) {
         this.transactions = transactions;
     }
 
+    /**
+     * methode qui retourne la liste des taux
+     * @return taux ArrayList
+     */
     public ArrayList<Taux> getTaux() {
         return taux;
     }
 
-    public void setTaux(ArrayList<Taux> taux) {
-        this.taux = taux;
-    }
 
+    /**
+     * methode qui permet de retourner le solde
+     * @return double solde du compte
+     */
     public double getSolde() {
         return solde;
     }
 
-    public void setSolde(double solde) {
-        this.solde = solde;
-    }
 
+    /**
+     * methode qui d'appliquer le taux
+     * appel la methode calculSolde
+     */
     public void appliquerTaux() {
         this.solde = this.calculSolde();
     }
 
+    /**
+     * methode qui permet de savoir si le solde est positif
+     * @return boolean
+     */
     public Boolean soldePositif() {
         return this.solde > 0;
     }
