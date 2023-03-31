@@ -1,0 +1,3 @@
+0 7 255 0 0 rattrapage obligatoire
+7 11 255 165 0 compensation possible
+11 20 50 205 50 valide

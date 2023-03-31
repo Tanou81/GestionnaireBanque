@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:controller="com.example.gestionnaireetudiant.Controleur" xmlns:fx="http://javafx.com/fxml">
+<GridPane fx:controller="com.example.gestionnairebanque.Controleur" xmlns:fx="http://javafx.com/fxml">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
